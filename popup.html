@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 300px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #1a1a2e;
+      color: white;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #0a66c2, #0077b5);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .header p {
+      font-size: 11px;
+      opacity: 0.8;
+      margin-top: 4px;
+    }
+
+    .logo {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .body {
+      padding: 20px;
+    }
+
+    .stats {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .stat-box {
+      flex: 1;
+      background: #16213e;
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+      border: 1px solid #0f3460;
+    }
+
+    .stat-number {
+      font-size: 28px;
+      font-weight: 700;
+      color: #0a66c2;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      color: #aaa;
+      margin-top: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-box {
+      background: #16213e;
+      border-radius: 10px;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      border: 1px solid #0f3460;
+      font-size: 13px;
+      color: #ccc;
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #555;
+      flex-shrink: 0;
+    }
+
+    .status-dot.active {
+      background: #00c853;
+      animation: pulse 1s infinite;
+    }
+
+    .status-dot.done {
+      background: #0a66c2;
+    }
+
+    .status-dot.error {
+      background: #ff5252;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .btn {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.3px;
+    }
+
+    .btn-start {
+      background: linear-gradient(135deg, #0a66c2, #0077b5);
+      color: white;
+    }
+
+    .btn-start:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px rgba(10, 102, 194, 0.4);
+    }
+
+    .btn-stop {
+      background: linear-gradient(135deg, #c62828, #b71c1c);
+      color: white;
+    }
+
+    .btn-stop:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px rgba(198, 40, 40, 0.4);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .warning {
+      margin-top: 15px;
+      background: #1a1200;
+      border: 1px solid #f57f17;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 11px;
+      color: #ffca28;
+      line-height: 1.5;
+    }
+
+    .footer {
+      padding: 10px 20px 15px;
+      text-align: center;
+      font-size: 10px;
+      color: #444;
+    }
+
+    .not-linkedin {
+      padding: 30px 20px;
+      text-align: center;
+      color: #aaa;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .not-linkedin .icon { font-size: 36px; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo">🗑️</div>
+    <h1>LinkedIn Deleter</h1>
+    <p>Clean up your profile automatically</p>
+  </div>
+
+  <div id="main-content">
+    <div class="body">
+      <div class="stats">
+        <div class="stat-box">
+          <div class="stat-number" id="deleted-count">0</div>
+          <div class="stat-label">Deleted</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number" id="removed-count">0</div>
+          <div class="stat-label">Removed</div>
+        </div>
+      </div>
+
+      <div class="status-box">
+        <div class="status-dot" id="status-dot"></div>
+        <span id="status-text">Ready to start</span>
+      </div>
+
+      <button class="btn btn-start" id="start-btn">▶ Start Deleting</button>
+      <button class="btn btn-stop" id="stop-btn" style="display:none; margin-top:10px;">⏹ Stop</button>
+
+      <div class="warning">
+        ⚠️ Make sure you're on your LinkedIn profile or activity page before starting.
+      </div>
+    </div>
+
+    <div class="footer">LinkedIn Deleter v1.0 • Use responsibly</div>
+  </div>
+
+  <div id="not-linkedin" style="display:none">
+    <div class="not-linkedin">
+      <div class="icon">🔗</div>
+      <strong>Not on LinkedIn</strong><br>
+      Please navigate to your LinkedIn profile or activity page first.
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
